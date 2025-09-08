@@ -76,3 +76,25 @@ curl -s $BASE_URL/horarios
 echo -e "\n============================\n"
 
 echo "✅ PRUEBAS TERMINADAS"
+# === 10. Editar estudiante por ID (ejemplo: 2) ===
+echo "📌 Editando estudiante con ID=2..."
+curl -s -X PUT -H "Content-Type: application/json" \
+-d '{"nombre":"Jose Luis Martinez Actualizado","carrera":"Big Data Avanzado"}' \
+$BASE_URL/estudiantes/2
+echo -e "\n============================\n"
+
+# === 11. Editar horario por ID (ejemplo: 2) ===
+echo "📌 Editando horario con ID=2..."
+curl -s -X PUT -H "Content-Type: application/json" \
+-d '{"materia":"Big Data Avanzado","dia":"Miercoles","hora":"10:00-13:00","estudiante_id":2}' \
+$BASE_URL/horarios/2
+echo -e "\n============================\n"
+
+# === 12. Listar después de editar ===
+echo "📌 Listando estudiantes después de editar:"
+curl -s $BASE_URL/estudiantes
+echo -e "\n---"
+
+echo "📌 Listando horarios después de editar:"
+curl -s $BASE_URL/horarios
+echo -e "\n============================\n"

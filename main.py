@@ -1,22 +1,19 @@
 # main.py
-from config.database import Base, engine, SessionLocal
-from models.horario_model import Estudiante, Horario
+from flask import Flask
+from controllers.horario_controller import horario_bp
+from config.database import Base, engine
 
 def inicializar_bd():
     """
-    Crea todas las tablas definidas en los modelos dentro de la base de datos.
-    Si el archivo horarios.db no existe, lo genera automáticamente.
+    Crea las tablas en la base de datos si no existen.
     """
     print("🔄 Creando base de datos y tablas...")
     Base.metadata.create_all(bind=engine)
     print("✅ Base de datos y tablas listas.")
 
+app = Flask(__name__)
+app.register_blueprint(horario_bp)
+
 if __name__ == "__main__":
     inicializar_bd()
-
-    # Probar conexión creando una sesión
-    db = SessionLocal()
-    try:
-        print("📡 Conexión exitosa a la base de datos.")
-    finally:
-        db.close()
+    app.run(debug=True)

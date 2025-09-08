@@ -12,7 +12,7 @@ class Estudiante(Base):
     __tablename__ = "estudiantes"
 
     id = Column(Integer, primary_key=True, index=True)
-    nombre = Column(String(255), nullable=False)
+    nombre = Column(String(255), nullable=False, index=True)
     carrera = Column(String(255), nullable=False)
 
     # Relación con la tabla Horario
@@ -28,8 +28,8 @@ class Horario(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     materia = Column(String(255), nullable=False)
-    dia = Column(String(50), nullable=False)   # Ejemplo: "Lunes"
-    hora = Column(String(50), nullable=False)  # Ejemplo: "08:00 AM"
+    dia = Column(String(50), nullable=False, index=True)   # Ejemplo: "Lunes"
+    hora = Column(String(50), nullable=False)              # Ejemplo: "08:00 AM"
 
     estudiante_id = Column(Integer, ForeignKey("estudiantes.id"))
 
